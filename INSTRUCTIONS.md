@@ -1,57 +1,33 @@
 # Instructions
 
-> Our goal is that we have dedicated routes to each of our component:
-> `/about-me` will redirect to the `AboutMeComponent`
-> `/cv` will redirect to the `CvComponent`
+> Now our app has all the content we want but it doesnt look very fancy, so lets spice it up by using paterialise css using CDN
 
-## Define the routing
+## Add materialisecss to your application
 
-### Adapt `src/app/app.hmtl`
-delete all the components and only keep the `<router-outlet />`
+add the `css`, `script` and `fonts` to `src/index.html` according to [materializecss.com/getting-started.html](https://materializecss.com/getting-started.html)
 
-### Adapt `src/app/app.ts`
-remove the `imports` for the removed components
-
-### Define the routes in `src/app/app.routes.ts`
-```ts
-import { Routes } from '@angular/router';
-import { AboutMeComponent } from './components/about-me-component/about-me-component';
-import { CvComponent } from './components/cv-component/cv-component';
-
-export const routes: Routes = [
-    {path: 'about-me', component: AboutMeComponent},
-    {path: 'cv', component: CvComponent},
-    /* fallback, when no route matches it will redirect to '/about-me' */
-    {path: '**', redirectTo: '/about-me'} 
-];
-```
-
-### Add links to the page
-in `src/app/app.ts` add the `RouterModule` to the `imports`
-```ts
-@Component({
-  ...
-  imports: [..., RouterModule],
-  ...
-})
-```
-`src/app/app.hmtl`
 ```html
-<ul>
-    <li [routerLink]="['/about-me']" routerLinkActive="active">About Me</li>
-    <li [routerLink]="['/cv']" routerLinkActive="active">Cv</li>
-</ul>
-<router-outlet />
-```
-`src/app/app.css`
-```css
-.active {
-    text-decoration: underline;
-}
+<!doctype html>
+<html lang="en">
+<head>
+  ...
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+  <app-root></app-root>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
 ```
 
-## Test it
-> Now if you run `ng serve` you can test if the routing works by opening your browser and then click on the menu points and observe if the expected component will be rendered
+## Be creative
+> use some of the [components](https://materializecss.com/badges.html) to make your app look fancy
 
-![/about-me](docs/abot-me.png)
-![/cv](docs/cv.png)
+## Exmple
+
+![about-me](docs/about-me.png)
+![cv](docs/cv.png)

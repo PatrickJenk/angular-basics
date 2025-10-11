@@ -1,5 +1,12 @@
-<ul>
-    <li [routerLink]="['/about-me']" routerLinkActive="active">About Me</li>
-    <li [routerLink]="['/cv']" routerLinkActive="active">Cv</li>
-</ul>
-<router-outlet />
+<nav class="teal">
+    <div class="nav-wrapper">
+        <a href="#" class="center brand-logo">Portfolio: Roy Manigley</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a [routerLink]="['/about-me']" routerLinkActive="active">About Me</a></li>
+            <li><a [routerLink]="['/cv']" routerLinkActive="active">Cv</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <router-outlet />
+</div>
