@@ -1,181 +1,57 @@
 # Instructions
 
-> Now hegenerated the `components`, `models`, and `services` we have to wire them up to brig our app alive
+> Our goal is that we have dedicated routes to each of our component:
+> `/about-me` will redirect to the `AboutMeComponent`
+> `/cv` will redirect to the `CvComponent`
 
-## Angular Wiringup
+## Define the routing
 
-```
-        ┌Models────────────────────┐         
-        │                          │         
-        │   ┌──────┐   ┌─────────┐ │         
-┌───────┼───┼  Cv  │   │ AboutMe ┼─┼────────┐
-│       │   └──────┘   └─────────┘ │        │
-│       └──────────────────────────┘        │
-│                                           │
-│                                           │
-│    ┌Services─────────────────────────┐    │
-│    │                                 │    │
-└────►┌───────────┐ ┌────────────────┐◄┼────┘
-     ││ CvService │ │ AboutMeService │ │     
-┌────┼┴───────────┘ └────────────────┴─┼────┐
-│    └─────────────────────────────────┘    │
-│                                           │
-│                                           │
-│    ┌Components────────────────────────┐   │
-│    │                                  │   │
-│    │┌─────────────┐┌─────────────────┐│   │
-└────┼► CvComponent ││ AboutMeComponent◄┼───┘
-     │└─────────────┘└─────────────────┘│    
-     └──────────────────────────────────┘    
-```
+### Adapt `src/app/app.hmtl`
+delete all the components and only keep the `<router-outlet />`
 
-### Define the Models
+### Adapt `src/app/app.ts`
+remove the `imports` for the removed components
 
-> The model is the definition of an object. We can degine fields and its types. At the end we want to display those models in our component.
-
-#### `src/app/models/about-me.ts`
-
+### Define the routes in `src/app/app.routes.ts`
 ```ts
-export class AboutMe {
-  constructor(
-    public name: string, 
-    public imagePath: string
-  ) {}
-}
+import { Routes } from '@angular/router';
+import { AboutMeComponent } from './components/about-me-component/about-me-component';
+import { CvComponent } from './components/cv-component/cv-component';
+
+export const routes: Routes = [
+    {path: 'about-me', component: AboutMeComponent},
+    {path: 'cv', component: CvComponent},
+    /* fallback, when no route matches it will redirect to '/about-me' */
+    {path: '**', redirectTo: '/about-me'} 
+];
 ```
 
-#### `src/app/models/cv.ts`
-
+### Add links to the page
+in `src/app/app.ts` add the `RouterModule` to the `imports`
 ```ts
-export class Cv {
-  constructor(
-    public employer: string,
-    public start: number,
-    public end?: number
-  ) {}
-}
-```
-
-### Define the components
-
-> The component ist what the user will be seeing in the browser, so we will need some of our models here :)
-
-#### `src/app/components/about-me-component`
-
-`.ts`
-
-```ts
-import { Component } from "@angular/core";
-import { AboutMe } from "../../models/about-me";
-
 @Component({
-  selector: "app-about-me-component",
-  imports: [],
-  templateUrl: "./about-me-component.html",
-  styleUrl: "./about-me-component.css",
+  ...
+  imports: [..., RouterModule],
+  ...
 })
-export class AboutMeComponent {
-  public aboutMe?: AboutMe;
-  ngOnInit(): void {
-    this.aboutMe = new AboutMe(
-      "Roy Manigley",
-      "https://avatars.githubusercontent.com/u/7741279?v=4"
-    );
-  }
-}
 ```
-
-`.html`
-
+`src/app/app.hmtl`
 ```html
-<h1>About me</h1>
-<p>{{ aboutMe?.name }}</p>
-<img [src]="aboutMe?.imagePath" />
-```
-
-#### `src/app/components/cv-component`
-
-`.ts`
-
-```ts
-import { Component } from "@angular/core";
-import { Cv } from "../../models/cv";
-
-@Component({
-  selector: "app-cv-component",
-  imports: [],
-  templateUrl: "./cv-component.html",
-  styleUrl: "./cv-component.css",
-})
-export class CvComponent {
-  cvs: Cv[] = [];
-
-  ngOnInit(): void {
-    this.cvs = [
-      new Cv("Nasa", 2000, 2004),
-      new Cv("FBI", 2004, 2010),
-      new Cv("CIA", 2010, 2023),
-      new Cv("Eutima", 2024),
-    ];
-  }
-}
-```
-
-`html`
-
-```html
-<h1>CV</h1>
 <ul>
-    @for (cv of cvs; track cv.employer) {
-        <li>{{ cv.employer }} {{ cv.start }} - {{ cv.end }}</li>
-    }
-</ul
+    <li [routerLink]="['/about-me']" routerLinkActive="active">About Me</li>
+    <li [routerLink]="['/cv']" routerLinkActive="active">Cv</li>
+</ul>
+<router-outlet />
 ```
-
-### Define the services
-
-> The service provides the data needed. Actually we could have all defined in the component, but this wouldnt be maintanable and scaleable. We will introduce the service so we can reuse it later. 
-
-#### `src/app/services/about-me-service.ts`
-
-```ts
-import { Injectable } from '@angular/core';
-import { AboutMe } from '../models/about-me';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AboutMeService {
- 
-  getAboutMe(): AboutMe {
-    return new AboutMe(
-      'Roy Manigley', 'https://avatars.githubusercontent.com/u/7741279?v=4'
-    )
-  }
+`src/app/app.css`
+```css
+.active {
+    text-decoration: underline;
 }
 ```
-> then adapt the [src/app/components/about-me-component/about-me-component.ts](portfolio/src/app/components/about-me-component/about-me-component.ts) to use the service
 
-#### `src/app/services/cv-service.ts`
+## Test it
+> Now if you run `ng serve` you can test if the routing works by opening your browser and then click on the menu points and observe if the expected component will be rendered
 
-```ts
-import { Injectable } from '@angular/core';
-import { AboutMe } from '../models/about-me';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AboutMeService {
- 
-  getAboutMe(): AboutMe {
-    return new AboutMe(
-      'Roy Manigley', 'https://avatars.githubusercontent.com/u/7741279?v=4'
-    )
-  }
-}
-```
-> then adapt the [src/app/components/about-me-component/about-me-component.ts](portfolio/src/app/components/about-me-component/about-me-component.ts) to use the service
-
-## Result
-> And when you run your app using `ng serve` you should see your protfolio all in one page  
-![result](docs/result.png)
+![/about-me](docs/abot-me.png)
+![/cv](docs/cv.png)
