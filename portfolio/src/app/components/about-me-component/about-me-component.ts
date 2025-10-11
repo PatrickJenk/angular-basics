@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AboutMe } from '../../models/about-me';
+import { AboutMeService } from '../../services/about-me-service';
 
 @Component({
   selector: 'app-about-me-component',
@@ -7,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './about-me-component.css'
 })
 export class AboutMeComponent {
+  public aboutMe?: AboutMe;
 
+  constructor(
+    private aboutMeService: AboutMeService
+  ) {}
+
+  ngOnInit(): void {
+    this.aboutMe = this.aboutMeService.getAboutMe()
+  }
 }

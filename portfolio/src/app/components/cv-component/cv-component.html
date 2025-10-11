@@ -1,1 +1,6 @@
-<p>cv-component works!</p>
+<h1>CV</h1>
+<ul>
+    @for (cv of cvs; track cv.employer) {
+        <li>{{ cv.employer }} {{ cv.start }} - {{ cv.end }}</li>
+    }
+</ul>
