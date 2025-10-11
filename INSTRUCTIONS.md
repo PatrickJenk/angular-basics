@@ -1,37 +1,23 @@
 # Instructions
+> We are going to generate a simple Protfolio SPA about you or any caracter you want.
 
-## Toolset Installation
+## Angular Project
 
-### Node JS
-[https://nodejs.org](https://nodejs.org/en/download)
-![node install](docs/node-install.png)
+### Initialize your project
+> To initialize your project run the following command
+```
+ng new portfolio
+```
+![ng-new](docs/ng-new.png)
 
-> To check if it was successful run the following commands in your powershell / terminal, if they dont showany error you are good to go.
+### Run your app
+> to run your app you will first need to change the directory to `portfolio` and then start the server, therefore you can run those commands  
 ```
-node -v
-npm -v
+cd portfolio
+ng serve
 ```
-### VS Code
-[https://code.visualstudio.com](https://code.visualstudio.com/download)
-> after you installed VSCode you can install the Angular Essentials plugin by John Papa  
+![ng serve](docs/ng-serve.png)
+### Open your app in the browser
+> open your webbrowser and got to [http://localhost:4200](http://localhost:4200)  
 
-![angular-essentials](docs/angular-essentials.png)
-> and enable Autosave under `File -> Autosave`
-
-### Git
-[https://git-scm.com](https://git-scm.com/downloads)
-> To check if it was successful run the following commands in your powershell / terminal, if they dont showany error you are good to go.
-```
-git -v
-```
-
-## Angular Installation
-
-Open your powershell or terminal and run  
-```
-npm install -g @angular/cli
-```
-> To check if it was successful run the following commands in your powershell / terminal, if they dont showany error you are good to go.
-```
-ng --version
-```
+![default page](docs/default-page.png)
