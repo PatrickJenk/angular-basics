@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AboutMe } from '../../models/about-me';
 import { AboutMeService } from '../../services/about-me-service';
 
@@ -8,7 +8,7 @@ import { AboutMeService } from '../../services/about-me-service';
   templateUrl: './about-me-component.html',
   styleUrl: './about-me-component.css'
 })
-export class AboutMeComponent {
+export class AboutMeComponent implements OnInit {
   public aboutMe?: AboutMe;
 
   constructor(
@@ -16,6 +16,6 @@ export class AboutMeComponent {
   ) {}
 
   ngOnInit(): void {
-    this.aboutMe = this.aboutMeService.getAboutMe()
+    this.aboutMeService.getAboutMe().subscribe(aboutMe => this.aboutMe = aboutMe)
   }
 }

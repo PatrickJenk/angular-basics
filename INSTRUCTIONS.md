@@ -1,33 +1,111 @@
 # Instructions
 
-> Now our app has all the content we want but it doesnt look very fancy, so lets spice it up by using paterialise css using CDN
+> Now we want to be able to edit our CV entries by using forms and then we will call a REST API to Create, Read, Update and Delete the records (CRUD)
 
-## Add materialisecss to your application
+## Setup Http Client
+Add the `provider` for the Http Client in `src/app/app.config.ts`  
+```ts
+import { provideHttpClient } from '@angular/common/http';
 
-add the `css`, `script` and `fonts` to `src/index.html` according to [materializecss.com/getting-started.html](https://materializecss.com/getting-started.html)
-
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  ...
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-</head>
-<body>
-  <app-root></app-root>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
-</html>
+export const appConfig: ApplicationConfig = {
+  providers: [
+    ...
+    provideHttpClient(),
+  ]
+};
 ```
 
-## Be creative
-> use some of the [components](https://materializecss.com/badges.html) to make your app look fancy
+## HTTP Proxy
+> To work around the `CORS` issue we will setup the HTTP proxy to map the calls to the API  
 
-## Exmple
+create a file `proxy.conf.json` in the root directory of your Angular project:
+```json
+{
+  "/api": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "pathRewrite": {"^/api" : ""}
+  }
+}
+```
+this will forward all http calls from `http://localhost:4200/api` to `http://localhost:3000` (wich will be our REST API).  
 
-![about-me](docs/about-me.png)
-![cv](docs/cv.png)
+But we need to let angular know that we want this to be applied, so we adapt the file `angular.json`
+```json
+...
+"serve": {
+  "options": {
+    "proxyConfig": "proxy.conf.json"
+  }
+}
+...
+```
+
+## Setup the REST API
+
+### Create the initial database
+create a file `db.json`
+```json
+{
+  "about-me": [
+    {
+      "id": "detail",
+    	"name": "Roy Manigley",
+    	"imagePath": "https://avatars.githubusercontent.com/u/7741279?v=4"
+  	}
+  ],
+  "cv": []
+}
+```
+
+### Start the REST API
+we want to add a script to start the rest-api, therefore we have to adapt the `package.json` file
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "rest-api": "npx json-server db.json"
+  },
+}
+```
+now we can run the api using `npm`
+```
+npm run rest-api
+```
+
+### Test the REST API
+- http://localhost:3000/about-me
+- http://localhost:3000/cv
+
+### Test the Proxy config
+open an other terminal and run `ng serve` (dont turn off the REST API)
+
+- http://localhost:4200/api/about-me
+- http://localhost:4200/api/cv
+
+## Fetch data from the API
+now we can fetch the data for `about-me` from the API instead of having i hard coded
+
+### Adapt `src/app/services/about-me-service.ts`
+```ts
+@Injectable({
+  providedIn: 'root'
+})
+export class AboutMeService {
+
+  constructor(
+    private http: HttpClient 
+  ) {}
+ 
+  getAboutMe(): Observable<AboutMe> {
+    return this.http.get<AboutMe>('/api/about-me/detail');
+  }
+}
+```
+### Adapt `src/app/components/about-me-component.ts`
+```ts
+  ngOnInit(): void {
+    this.aboutMeService.getAboutMe().subscribe(aboutMe => this.aboutMe = aboutMe)
+  }
+```
