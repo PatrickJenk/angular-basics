@@ -65,7 +65,7 @@ export class Cv {
 `.ts`
 
 ```ts
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { AboutMe } from "../../models/about-me";
 
 @Component({
@@ -74,7 +74,7 @@ import { AboutMe } from "../../models/about-me";
   templateUrl: "./about-me-component.html",
   styleUrl: "./about-me-component.css",
 })
-export class AboutMeComponent {
+export class AboutMeComponent implements OnInit {
   public aboutMe?: AboutMe;
   ngOnInit(): void {
     this.aboutMe = new AboutMe(
@@ -98,7 +98,7 @@ export class AboutMeComponent {
 `.ts`
 
 ```ts
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Cv } from "../../models/cv";
 
 @Component({
@@ -107,7 +107,7 @@ import { Cv } from "../../models/cv";
   templateUrl: "./cv-component.html",
   styleUrl: "./cv-component.css",
 })
-export class CvComponent {
+export class CvComponent implements OnInit {
   cvs: Cv[] = [];
 
   ngOnInit(): void {
