@@ -7,7 +7,7 @@
 We will generate the components for our portfolio application
 ```
 ng generate component components/about-me-component
-ng generate component components/cv-me-component
+ng generate component components/cv-component
 ```
 this will generate following directories
 ```
@@ -60,8 +60,8 @@ src/app
 ### Generate `services`
 We will generate the services for our portfolio application
 ```
-ng generate service selvices/about-me-service
-ng generate class models/cv-service
+ng generate service services/about-me-service
+ng generate class services/cv-service
 ```
 this will generate following files:
 ```
