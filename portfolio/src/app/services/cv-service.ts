@@ -8,10 +8,10 @@ export class CvService {
   
   get_cvs(): Cv[] {
     return [
-      new Cv('Grundschule, Schule Spiegel', 2007, 20018),
-      new Cv('Lehre, Elektroinstallateur:in EFZ', 2018, 2022),
-      new Cv('Zivildienst, Beeinträchtigtenheim', 2022, 2023),
-      new Cv('Projektmitarbeiter und Betriebsleiter', 2023),
+      new Cv('Seiffenkisten Bauer', 2007, 20012),
+      new Cv('Pausen-Clown', 2013, 2018),
+      new Cv('Profi Handballer', 2018, 2023),
+      new Cv('Chrüppu EFZ', 2023),
     ]
   }  
 }
