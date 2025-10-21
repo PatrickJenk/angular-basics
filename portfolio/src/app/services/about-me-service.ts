@@ -8,7 +8,7 @@ export class AboutMeService {
  
   getAboutMe(): AboutMe {
     return new AboutMe(
-      'Roy Manigley', 'https://avatars.githubusercontent.com/u/7741279?v=4'
+      'Patrick Jenk', 'https://static.wikitide.net/loathsomecharacterswiki/thumb/f/f6/C--Users-cleme-Downloads-527-5274029_patrick-star-clipart-patrick-star-drooling-png-download.png/300px-C--Users-cleme-Downloads-527-5274029_patrick-star-clipart-patrick-star-drooling-png-download.png'
     )
   }
 }
