@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AboutMe } from '../models/about-me';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutMeService {
- 
-  getAboutMe(): AboutMe {
-    return new AboutMe(
-      'Patrick Jenk', 'https://lh3.googleusercontent.com/proxy/NlxjO6z4xOja8k0Upzy4T1oDjwtXT2eO8MtVwYnSpJwbtKYcuZvggFKqxkgqx9n7-N5FwO17Qm7EBCIaJRWHfZknFqYn'
-    )
+
+ constructor(
+  private http: HttpClient
+ ){}
+
+  getAboutMe(): Observable<AboutMe> {
+    return this.http.get<AboutMe>('/api/about-me/detail'); 
+  }
+
+  updateAboutMe(name: string): Observable<AboutMe> {
+    return this.http.patch<AboutMe>('/api/about-me/detail', {name: name})
   }
 }

@@ -8,10 +8,10 @@ export class CvService {
   
   get_cvs(): Cv[] {
     return [
-      new Cv('Seifenkisten Bauer', 2007, 2012),
-      new Cv('Pausen-Clown', 2013, 2018),
-      new Cv('Profi Handballer', 2019, 2023),
-      new Cv('Chrüppu EFZ', 2024),
+      new Cv('Nasa', 2000, 2004),
+      new Cv('FBI', 2004, 2010),
+      new Cv('CIA', 2010, 2023),
+      new Cv('Eutima', 2024),
     ]
   }  
 }

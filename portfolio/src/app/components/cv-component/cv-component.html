@@ -1,6 +1,39 @@
 <h1>CV</h1>
-<ul>
-    @for (cv of cvs; track cv.employer) {
-        <li>{{ cv.employer }} {{ cv.start }} - {{ cv.end }}</li>
-    }
-</ul>
+
+<table>
+    <thead>
+      <tr>
+        <th><button>ADD</button><button>Delete</button></th>
+          <th>Employer</th>
+          <th>Start</th>
+          <th>End</th>
+      </tr>
+    </thead>
+ 
+    <tbody>
+      <tr>
+       <th><button>ADD</button><button>Delete</button></th>
+        <td>Area 51 Coffee Manager</td>
+        <td>2012</td>
+        <td>2016</td>
+      </tr>
+      <tr>
+        <th><button>ADD</button><button>Delete</button></th>
+        <td>Senior Cat Video Curator @ YouTube</td>
+        <td>2016</td>
+        <td>2019</td>
+      </tr>
+      <tr>
+        <th><button>ADD</button><button>Delete</button></th>
+        <td>Google Docs Dark-Mode Consultant</td>
+        <td>2019</td>
+        <td>2023</td>
+      </tr>
+      <tr>
+        <th><button>ADD</button><button>Delete</button></th>
+        <td>Intern – Windows Update Department</td>
+        <td>2023</td>
+        <td>heute</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,55 @@
+body {
+  background-color: #121212;   /* tiefes Schwarzgrau als Hintergrund */
+  color: #ffffff;              /* weiße Standardschrift */
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* Für hellere Flächen (z. B. Cards, Container) */
+.section,
+.container,
+.card {
+  background-color: #2a2a2a;   /* mittleres Grau */
+  color: #ffffff;              /* weiße Schrift */
+  border-radius: 12px;
+}
+
+/* Überschriften */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Links */
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+a:hover {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+/* Dezente graue Rahmen und Trennlinien */
+hr, .divider {
+  border: none;
+  border-top: 1px solid #555555;
+}
+
+/* Buttons (weiß mit schwarzer Schrift/Icon) */
+button,
+.btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+button:hover,
+.btn:hover {
+  background-color: #cccccc;
+  transform: translateY(-1px);
+}

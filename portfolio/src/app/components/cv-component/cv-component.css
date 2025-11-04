@@ -1,0 +1,71 @@
+/* ===== Titel: "CV" ===== */
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #ffffff;          /* Weiß */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ===== Tabelle ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;   /* saubere Linien */
+  margin-top: 1rem;
+  color: #ffffff;              /* weiße Schrift */
+  background-color: #2a2a2a;   /* dunkles Grau wie deine Cards */
+  border: 1px solid #555555;   /* äußerer Rahmen */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Tabellenkopf */
+thead {
+  background-color: #1e1e1e;   /* etwas dunkler für Kontrast */
+}
+
+thead th {
+  font-weight: 600;
+  color: #ffffff;
+  padding: 12px 8px;
+  border-bottom: 1px solid #555555;
+  text-align: left;
+}
+
+/* Tabellenzellen */
+tbody td, tbody th {
+  border-bottom: 1px solid #555555; /* weiße Linien */
+  padding: 10px 8px;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* Letzte Zeile ohne Linie */
+tbody tr:last-child td,
+tbody tr:last-child th {
+  border-bottom: none;
+}
+
+/* Buttons in der Tabelle */
+table button {
+  background-color: #ffffff;    /* Weißer Button */
+  color: #000000;               /* Schwarzer Text/Icon */
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  margin-right: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+table button:hover {
+  background-color: #cccccc;    /* leichtes Grau beim Hover */
+}
+
+/* Tabellenrahmen oben & unten etwas Luft */
+table tr:hover {
+  background-color: #333333;    /* dezent helleres Grau beim Hover */
+}
