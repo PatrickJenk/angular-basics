@@ -1,7 +1,12 @@
+<!-- app.html -->
+<h1>Welcome to my, {{ title() }}</h1>
+
 <ul>
-    <li [routerLink]="['/about-me']" routerLinkActive="active">About Me</li>
-    <li [routerLink]="['/cv']" routerLinkActive="active">Cv</li>
+  <li><a [routerLink]="['/about-me']" routerLinkActive="active">About Me</a></li>
+  <li><a [routerLink]="['/cv']" routerLinkActive="active">Cv</a></li>
 </ul>
-<router-outlet />
-<app-about-me-component></app-about-me-component>
-<app-cv-component></app-cv-component>
+
+<!-- WICHTIG: nur EIN Outlet -->
+<div id="content">
+  <router-outlet></router-outlet>
+</div>
