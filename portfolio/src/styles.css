@@ -1,3 +1,12 @@
+:root{
+  --navbar-bg: #000;
+  --button-bg: #333;
+  --button-hover: #555;
+  --button-active: #666;
+  --text: #f5f5f5;
+  --border: #777;
+}
+
 body {
   background-color: #121212;   /* tiefes Schwarzgrau als Hintergrund */
   color: #ffffff;              /* weiße Standardschrift */
@@ -52,4 +61,53 @@ button:hover,
 .btn:hover {
   background-color: #cccccc;
   transform: translateY(-1px);
+}
+/* macht die Navbar wirklich schwarz, egal was Bootstrap o.a. setzt */
+header.navbar{
+  background: var(--navbar-bg) !important;
+  border-radius: 10px;
+  padding: 12px 20px;
+  margin: 10px;
+  color: var(--text);
+}
+
+/* falls UL/NAV irgendwo pink bekommen: transparent erzwingen */
+header.navbar nav,
+header.navbar ul{
+  background: transparent !important;
+}
+
+/* Liste rechts, horizontal */
+header.navbar ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons grau mit Rahmen */
+header.navbar li a {
+  text-decoration: none;
+  color: var(--text) !important;
+  background: var(--button-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px;      /* leicht abgerundet, aber kompakt */
+  padding: 3px 8px;        /* hier wird’s enger */
+  font-size: 0.85rem;      /* Text leicht kleiner */
+  line-height: 1.2;        /* weniger vertikaler Abstand */
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+header.navbar li a:hover{
+  background: var(--button-hover) !important;
+  transform: translateY(-1px);
+}
+
+/* nur Links in der Navbar aktiv hervorheben */
+header.navbar a.active{
+  background: var(--button-active) !important;
+  border-color: var(--border) !important;
+  color: #fff !important;
+  font-weight: 700;
 }

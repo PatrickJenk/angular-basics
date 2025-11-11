@@ -1,3 +1,75 @@
+:root {
+  --navbar-bg: #000;        /* schwarz */
+  --button-bg: #333;        /* dunkelgrau für Buttons */
+  --button-hover: #555;     /* etwas helleres Grau beim Hover */
+  --button-active: #666;    /* Farbe für aktiven Link */
+  --text: #f5f5f5;          /* fast weiss */
+  --border: #777;           /* grauer Rahmen */
+}
+
+/* Grundlayout */
+body {
+  margin: 0;
+  background: #111;
+  color: var(--text);
+  font-family: system-ui, Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--navbar-bg);
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Titel */
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Liste rechts */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+/* Buttons grau */
+.navbar li a {
+  text-decoration: none;
+  color: var(--text);
+  background: var(--button-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover */
+.navbar li a:hover {
+  background: var(--button-hover);
+  transform: translateY(-1px);
+}
+
+/* Aktiver Link */
 .active {
-    text-decoration: underline;
+  background: var(--button-active);
+  border-color: var(--border);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Abstand unter Navbar */
+#content {
+  padding: 16px;
 }
