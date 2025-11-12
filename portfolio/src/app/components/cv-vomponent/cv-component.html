@@ -1,0 +1,30 @@
+<div class="center">
+    <div class="card card-max-width">
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">CV</span>
+            <table class="highlight">
+                <thead>
+                    <tr>
+                        <th><button class="btn" [routerLink]="['new']">Add</button></th>
+                        <th>Employer</th>
+                        <th>Start</th>
+                        <th>End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (cv of cvs; track cv.employer) {
+                    <tr>
+                        <th>
+                            <button class="btn" [routerLink]="[cv.id]">Edit</button>
+                            <button class="btn red" (click)="delete(cv)">Delete</button>
+                        </th>
+                        <td>{{ cv.employer }}</td>
+                        <td>{{ cv.start }}</td>
+                        <td>{{ cv.end }}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

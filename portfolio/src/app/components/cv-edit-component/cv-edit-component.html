@@ -1,0 +1,13 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+    <label for="employer">Employer</label>
+    <input id="employer" formControlName="employer" type="text">
+    
+    <label for="start">Start</label>
+    <input id="start" formControlName="start" type="number">
+    
+    <label for="end">End</label>
+    <input id="end" formControlName="end" type="number">
+
+    <button class="btn" [disabled]="form.invalid" type="submit">save</button>
+    <button class="btn grey" type="button" onclick="history.back()">cancel</button>
+</form>

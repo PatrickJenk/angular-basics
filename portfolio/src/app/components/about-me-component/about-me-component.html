@@ -1,0 +1,14 @@
+<div class="center">
+    <div class="card card-max-width">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" [src]="aboutMe?.imagePath">
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">About Me</span>
+            <form (ngSubmit)="save()" *ngIf="aboutMe">
+                <input name="name" [(ngModel)]="aboutMe!.name">
+                <button class="btn" type="submit">save</button>
+            </form>
+        </div>
+    </div>
+</div>
