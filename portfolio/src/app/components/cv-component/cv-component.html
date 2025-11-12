@@ -1,30 +1,51 @@
-<div class="center">
-    <div class="card card-max-width">
-        <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">CV</span>
-            <table class="highlight">
-                <thead>
-                    <tr>
-                        <th><button class="btn" [routerLink]="['new']">Add</button></th>
-                        <th>Employer</th>
-                        <th>Start</th>
-                        <th>End</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (cv of cvs; track cv.employer) {
-                    <tr>
-                        <th>
-                            <button class="btn" [routerLink]="[cv.id]">Edit</button>
-                            <button class="btn red" (click)="delete(cv)">Delete</button>
-                        </th>
-                        <td>{{ cv.employer }}</td>
-                        <td>{{ cv.start }}</td>
-                        <td>{{ cv.end }}</td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+<div class="cv-wrapper">
+  <div class="card">
+    <div class="card-header">
+      <h2>Mein CV</h2>
+      <button class="btn-add" (click)="onAddClick()">Add</button>
     </div>
+
+    <table class="cv-table">
+      <thead>
+        <tr>
+          <th>Employer</th>
+          <th>Start</th>
+          <th>End</th>
+          <th *ngIf="isEditingAllowed" class="th-actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of cvs; let i = index">
+          <td>{{ c.company }}</td>
+          <td>{{ c.from }}</td>
+          <td>{{ c.to || '' }}</td>
+          <td *ngIf="isEditingAllowed" class="td-actions">
+            <button class="icon" title="delete" (click)="delete(i)">×</button>
+          </td>
+        </tr>
+
+        <tr *ngIf="showEditor">
+          <td><input [(ngModel)]="newCompany" placeholder="Employer"></td>
+          <td><input type="number" [(ngModel)]="newFrom" placeholder="Start"></td>
+          <td><input type="number" [(ngModel)]="newTo" placeholder="End"></td>
+          <td class="td-actions">
+            <button class="btn" (click)="saveNew()">Save</button>
+            <button class="btn ghost" (click)="showEditor=false">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal-backdrop" *ngIf="showLogin" (click)="closeLogin()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <h3>Login</h3>
+    <input type="password" [(ngModel)]="password" placeholder="Passwort">
+    <div class="modal-actions">
+      <button class="btn" (click)="checkPassword()">OK</button>
+      <button class="btn ghost" (click)="closeLogin()">Cancel</button>
+    </div>
+  </div>
 </div>

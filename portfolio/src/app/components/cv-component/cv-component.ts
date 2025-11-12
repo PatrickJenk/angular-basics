@@ -1,29 +1,58 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv-service';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-cv-component',
-  imports: [RouterModule],
+  selector: 'app-cv',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './cv-component.html',
-  styleUrl: './cv-component.css'
+  styleUrls: ['./cv-component.css']
 })
 export class CvComponent {
-
   cvs: Cv[] = [];
+  isEditingAllowed = false;
+  showLogin = false;
+  showEditor = false;
+  password = '';
 
-  constructor(
-    private cvService: CvService
-  ) { }
+  newCompany = '';
+  newFrom?: number;
+  newTo?: number;
 
-  ngOnInit(): void {
-    this.cvService.getCVs().subscribe(cvs => this.cvs = cvs)
+  constructor(private cvService: CvService) {}
+  ngOnInit() { this.cvs = this.cvService.getCVs(); }
+
+  onAddClick() {
+    if (!this.isEditingAllowed) { this.showLogin = true; return; }
+    this.showEditor = true;
   }
 
-  delete(cv: Cv) {
-    if (confirm('Do you realy want to delete this record?')) {
-      this.cvService.deleteCV(cv.id!).subscribe(() => this.ngOnInit())
+  checkPassword() {
+    if (this.password === '111') {
+      this.isEditingAllowed = true;
+      this.showLogin = false;
+      this.password = '';
+      this.showEditor = true;
+    } else {
+      alert('Falsches Passwort');
     }
+  }
+  closeLogin() { this.showLogin = false; this.password = ''; }
+
+  saveNew() {
+    if (!this.newCompany || !this.newFrom) return;
+    this.cvs.push(new Cv(this.newCompany, Number(this.newFrom), this.newTo ? Number(this.newTo) : undefined));
+    this.cvService.saveCVs(this.cvs);
+    this.newCompany = ''; this.newFrom = undefined; this.newTo = undefined;
+    this.showEditor = false;
+  }
+
+  delete(i: number) {
+    if (!this.isEditingAllowed) return;
+    this.cvs.splice(i, 1);
+    this.cvService.saveCVs(this.cvs);
   }
 }

@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Cv } from '../../models/cv';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv-service';
 
 @Component({
   selector: 'app-cv-edit-component',
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './cv-edit-component.html',
-  styleUrl: './cv-edit-component.css'
+  styleUrls: ['./cv-edit-component.css']
 })
 export class CvEditComponent implements OnInit {
-  record?: Cv;
-  form: FormGroup
+  form: FormGroup;
+  index: number | null = null;
 
   constructor(
     private cvService: CvService,
@@ -20,32 +22,35 @@ export class CvEditComponent implements OnInit {
     formBuilder: FormBuilder
   ) {
     this.form = formBuilder.group({
-      employer: [null, [Validators.required]],
-      start: [null, [Validators.required]],
-      end: [null],
-    })
+      company: [null, [Validators.required]],
+      from: [null, [Validators.required]],
+      to: [null]
+    });
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      if (id) {
-        console.log(id)
-        this.cvService.getCV(id).subscribe(cv => {
-          this.record = cv;
-          this.form.patchValue(cv);
-        })
-      } else {
-        this.record = new Cv();
+      const idx = params.get('index'); // Route z. B. /cv/edit/2
+      const list = this.cvService.getCVs();
+
+      if (idx !== null) {
+        this.index = Number(idx);
+        const rec = list[this.index];
+        if (rec) this.form.patchValue(rec);
       }
-    })
+    });
   }
 
   save() {
-    if (this.record?.id) {
-      this.cvService.updateCV(this.record.id, this.form.value).subscribe(() => history.back())
+    const list = this.cvService.getCVs();
+
+    if (this.index !== null && list[this.index]) {
+      list[this.index] = this.form.value as Cv;
     } else {
-      this.cvService.createCV(this.form.value).subscribe(() => history.back())
+      list.push(this.form.value as Cv);
     }
+
+    this.cvService.saveCVs(list);
+    history.back();
   }
 }

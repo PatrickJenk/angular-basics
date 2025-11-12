@@ -1,9 +1,173 @@
-.btn {
-  background-color: #777 !important; /* Grau */
-  color: #fff !important;
-  text-transform: none;
+/* Hintergrund dunkel, Text hell */
+.cv-wrapper {
+  min-height: 100vh;
+  background: #2e2e2e;
+  color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
 }
 
+/* Karte dunkelgrau mit hellem Text */
+.card {
+  width: min(900px, 100%);
+  background: #333;
+  color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  padding: 24px 28px 30px;
+}
+
+/* Header: Titel mittig, Add rechts oben */
+.card-header {
+  position: relative;
+  padding-top: 6px;
+  margin-bottom: 20px;
+}
+.card-header h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.btn-add {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #555;
+  color: #f2f2f2;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.btn-add:hover {
+  background: #777;
+}
+
+/* Tabelle */
+.cv-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cv-table thead th {
+  text-align: left;
+  font-weight: 800;           /* fett */
+  padding: 12px 8px;
+  border-bottom: 2px solid #777;
+  color: #ffffff;             /* heller Text */
+  letter-spacing: 0.5px;
+  text-transform: uppercase;  /* wirkt moderner */
+}
+
+.cv-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #444;
+  color: #f2f2f2;
+}
+
+/* Add-/Delete Buttons */
+.th-actions,
+.td-actions {
+  width: 130px;
+  text-align: right;
+}
+
+.icon {
+  border: 1px solid #777;
+  background: transparent;
+  color: #f2f2f2;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.icon:hover {
+  background: #555;
+}
+
+/* Inputs in der Add-Row */
+.cv-table input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #666;
+  border-radius: 6px;
+  background: #2e2e2e;
+  color: #f2f2f2;
+}
+
+/* Buttons allgemein */
+.btn {
+  background: #777;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: background 0.2s ease;
+}
 .btn:hover {
-  background-color: #999 !important;
+  background: #999;
+}
+.btn.ghost {
+  background: transparent;
+  color: #f2f2f2;
+  border: 1px solid #888;
+}
+.btn.ghost:hover {
+  background: #444;
+}
+
+/* Modal (Login) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+.modal {
+  width: min(380px, 92vw);
+  background: #2f2f2f;
+  color: #f2f2f2;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid #555;
+}
+.modal h3 {
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+.modal input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #666;
+  background: #242424;
+  color: #f2f2f2;
+}
+.modal-actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .th-actions,
+  .td-actions {
+    width: 100px;
+  }
+  .btn-add {
+    padding: 6px 10px;
+  }
 }

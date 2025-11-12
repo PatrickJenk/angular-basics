@@ -1,43 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Cv } from '../models/cv';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CvService {
-  
-  get_cvs(): Cv[] {
-    return [
-      new Cv('Nasa', 2000, 2004),
-      new Cv('FBI', 2004, 2010),
-      new Cv('CIA', 2010, 2023),
-      new Cv('Eutima', 2024),
-    ]
-  } 
-  
-  constructor(
-    private http: HttpClient
-  ) { }
+  private key = 'cv_data';
 
-  getCVs(): Observable<Cv[]> {
-    return this.http.get<Cv[]>('/api/cv/');
+  getCVs(): Cv[] {
+    const data = localStorage.getItem(this.key);
+    if (data) return JSON.parse(data);
+
+    const defaults = [
+      new Cv('Nasa', 2002, 2005),
+      new Cv('Youtube', 2006, 2009),
+      new Cv('Cop', 2010, 2017),
+      new Cv('Autist', 2017, 2022),
+      new Cv('Clown', 2002) // bis heute
+    ];
+    localStorage.setItem(this.key, JSON.stringify(defaults));
+    return defaults;
   }
 
-  getCV(id: string): Observable<Cv> {
-    return this.http.get<Cv>(`/api/cv/${id}`);
-  }
-
-  createCV(cv: Cv): Observable<Cv> {
-    return this.http.post<Cv>(`/api/cv/`, cv);
-  }
-
-  updateCV(id: string, cv: Cv): Observable<Cv> {
-    return this.http.put<Cv>(`/api/cv/${id}/`, cv);
-  }
-
-  deleteCV(id: string): Observable<void> {
-    return this.http.delete<void>(`/api/cv/${id}/`);
+  saveCVs(cvs: Cv[]) {
+    localStorage.setItem(this.key, JSON.stringify(cvs));
   }
 }
