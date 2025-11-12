@@ -1,0 +1,9 @@
+.btn {
+  background-color: #777 !important; /* Grau */
+  color: #fff !important;
+  text-transform: none;
+}
+
+.btn:hover {
+  background-color: #999 !important;
+}

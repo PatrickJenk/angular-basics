@@ -1,3 +1,16 @@
-.active {
-    text-decoration: underline;
+/* Navbar Hintergrund */
+nav.teal {
+  background-color: #000 !important; /* Schwarz */
+}
+
+/* Navbar Textfarbe */
+.nav-wrapper a,
+.nav-wrapper ul li a {
+  color: #fff !important; /* Weiss */
+}
+
+/* Active Link leicht grau unterlegt */
+.nav-wrapper ul li a.active {
+  background-color: #333 !important;
+  border-radius: 4px;
 }
