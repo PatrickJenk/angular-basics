@@ -1,17 +1,87 @@
-.card-max-width {
-    max-width: 30em;
+/* --- Layout & Hintergrund --- */
+:host {
+  display: block;
+  background-color: #2e2e2e; /* dunkles Grau */
+  min-height: 100vh;
+  padding: 40px 0;
+  color: #f2f2f2;
 }
 
 .center {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.btn {
-  background-color: #777 !important; /* Grau */
-  color: #fff !important;
+
+.card-max-width {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* --- Karte --- */
+.card {
+  background-color: #3a3a3a; /* etwas helleres Grau */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+
+/* --- Titel ("Über mich" / Name) --- */
+.card-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* --- Bild --- */
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 16px;
+}
+
+.img-wrapper img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #555;
+  display: block;
+}
+
+/* --- Formular & Eingabefeld --- */
+form {
+  margin-top: 8px;
+}
+
+label {
+  color: #fff;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+/* --- Button --- */
+button.btn {
+  background-color: #666;
+  color: white;
+  border: none;
+  border-radius: 6px;
   text-transform: none;
 }
 
-.btn:hover {
-  background-color: #999 !important;
+button.btn:hover {
+  background-color: #808080;
 }

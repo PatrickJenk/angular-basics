@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
-import { AboutMe } from '../models/about-me';
 import { Observable, of } from 'rxjs';
+import { AboutMe } from '../models/about-me';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutMeService {
 
+  private storageKey = 'aboutMeData';
+
   getAboutMe(): Observable<AboutMe> {
+    const saved = localStorage.getItem(this.storageKey);
+    if (saved) {
+      return of(JSON.parse(saved));
+    }
+    // Fallback beim ersten Start
     return of({
       name: 'Pädi',
-      imagePath: '/me.jpg' // liegt im public Ordner
+      imagePath: '/me.jpg.jpg'
     });
   }
 
-  updateAboutMe(name: string): Observable<void> {
-    // hier könntest du später ein API PUT machen
-    return of();
+  updateAboutMe(data: AboutMe): Observable<AboutMe> {
+    localStorage.setItem(this.storageKey, JSON.stringify(data));
+    return of(data);
   }
 }

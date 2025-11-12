@@ -1,14 +1,23 @@
 <div class="center">
-    <div class="card card-max-width">
-        <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" [src]="aboutMe?.imagePath">
-        </div>
-        <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">About Me</span>
-            <form (ngSubmit)="save()" *ngIf="aboutMe">
-                <input name="name" [(ngModel)]="aboutMe!.name">
-                <button class="btn" type="submit">save</button>
-            </form>
-        </div>
+  <div class="card card-max-width">
+    <div class="card-content">
+      <!-- Titel zeigt NUR gespeicherten Namen -->
+      <span class="card-title">
+        {{ savedName || 'About Me' }}
+    </span>
+
+
+      <!-- Bild -->
+      <div class="img-wrapper">
+        <img [src]="aboutMe?.imagePath || '/me.jpg'" alt="Profilbild">
+      </div>
+
+      <!-- Eingabefeld -->
+      <form (ngSubmit)="save()" *ngIf="aboutMe">
+        <label for="name">Seifenkistenrennen</label>
+        <input id="name" name="name" [(ngModel)]="aboutMe.name" placeholder="z. B. About Me">
+        <button class="btn" type="submit">save</button>
+      </form>
     </div>
+  </div>
 </div>

@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+/* --- Globales Layout --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #333; /* gleiches Dunkelgrau wie About Me */
+  color: #f2f2f2;            /* heller Standardtext */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Entfernt evtl. weiße Flächen anderer Container */
+app-root {
+  display: block;
+  min-height: 100vh;
+  background-color: #333;
+}
