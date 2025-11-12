@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AboutMe } from '../models/about-me';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AboutMeService {
 
-  constructor(
-    private http: HttpClient 
-  ) {}
- 
   getAboutMe(): Observable<AboutMe> {
-    return this.http.get<AboutMe>('/api/about-me/detail');
+    return of({
+      name: 'Pädi',
+      imagePath: '/me.jpg' // liegt im public Ordner
+    });
   }
 
-  updateAboutMe(name: string): Observable<AboutMe> {
-    return this.http.patch<AboutMe>('/api/about-me/detail/',  { name });
+  updateAboutMe(name: string): Observable<void> {
+    // hier könntest du später ein API PUT machen
+    return of();
   }
 }

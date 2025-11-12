@@ -9,9 +9,10 @@ import { CommonModule } from '@angular/common';
   imports: [FormsModule, CommonModule],
   templateUrl: './about-me-component.html',
   styleUrl: './about-me-component.css'
+  
 })
 export class AboutMeComponent implements OnInit {
-  public aboutMe?: AboutMe;
+  public aboutMe?: AboutMe; 
 
   constructor(
     private aboutMeService: AboutMeService
@@ -26,4 +27,5 @@ export class AboutMeComponent implements OnInit {
       this.aboutMeService.updateAboutMe(this.aboutMe.name).subscribe()
     }
   }
+  
 }

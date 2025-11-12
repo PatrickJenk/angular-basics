@@ -1,7 +1,4 @@
-export class AboutMe {
-    constructor(
-       public name: string,
-        public imagePath: string,
-    ) {
-    }
+export interface AboutMe {
+  name: string;
+  imagePath: string;
 }
