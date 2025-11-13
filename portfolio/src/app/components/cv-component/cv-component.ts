@@ -25,30 +25,43 @@ export class CvComponent {
   constructor(private cvService: CvService) {}
   ngOnInit() { this.cvs = this.cvService.getCVs(); }
 
-  onAddClick() {
-    if (!this.isEditingAllowed) { this.showLogin = true; return; }
-    this.showEditor = true;
+onAddClick() {
+  console.log('Add clicked');           // Debug
+  if (!this.isEditingAllowed) {
+    this.showLogin = true;              // Modal anzeigen
+    return;
   }
+  this.showEditor = true;               // sonst direkt Editor-Zeile
+}
 
-  checkPassword() {
-    if (this.password === '111') {
-      this.isEditingAllowed = true;
-      this.showLogin = false;
-      this.password = '';
-      this.showEditor = true;
-    } else {
-      alert('Falsches Passwort');
-    }
+checkPassword() {
+  if (this.password === '111') {
+    this.isEditingAllowed = true;
+    this.showLogin = false;
+    this.password = '';
+    this.showEditor = true;
+  } else {
+    alert('Falsches Passwort');
   }
+}
+
   closeLogin() { this.showLogin = false; this.password = ''; }
 
-  saveNew() {
-    if (!this.newCompany || !this.newFrom) return;
-    this.cvs.push(new Cv(this.newCompany, Number(this.newFrom), this.newTo ? Number(this.newTo) : undefined));
-    this.cvService.saveCVs(this.cvs);
-    this.newCompany = ''; this.newFrom = undefined; this.newTo = undefined;
-    this.showEditor = false;
-  }
+ saveNew() {
+  if (!this.newCompany || !this.newFrom) return;
+
+  this.cvs.push(new Cv(this.newCompany, Number(this.newFrom), this.newTo ? Number(this.newTo) : undefined));
+
+  // 🔹 sort newest first
+  this.cvs.sort((a, b) => (b.from || 0) - (a.from || 0));
+
+  this.cvService.saveCVs(this.cvs);
+  this.newCompany = '';
+  this.newFrom = undefined;
+  this.newTo = undefined;
+  this.showEditor = false;
+}
+
 
   delete(i: number) {
     if (!this.isEditingAllowed) return;
