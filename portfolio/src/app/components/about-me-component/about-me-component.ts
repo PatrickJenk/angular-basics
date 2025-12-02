@@ -4,11 +4,12 @@ import { AboutMeService } from '../../services/about-me-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-about-me-component',
   standalone: true,
-  imports: [FormsModule, CommonModule, TranslatePipe],
+  imports: [FormsModule, CommonModule, TranslatePipe, ButtonModule],
   templateUrl: './about-me-component.html',
   styleUrls: ['./about-me-component.css']
 })

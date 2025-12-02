@@ -1,6 +1,8 @@
 import {
   Title
-} from "./chunk-U2W4D4HE.js";
+} from "./chunk-3XICD2JW.js";
+import "./chunk-JCFQ5C7X.js";
+import "./chunk-GEDVNYGP.js";
 import {
   HashLocationStrategy,
   LOCATION_INITIALIZED,
@@ -8,9 +10,8 @@ import {
   LocationStrategy,
   PathLocationStrategy,
   ViewportScroller
-} from "./chunk-LMFWKNMP.js";
-import "./chunk-A3XECZ2N.js";
-import "./chunk-W2WIUP6R.js";
+} from "./chunk-5JLNKCAC.js";
+import "./chunk-CYIUJTKM.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -50,6 +51,7 @@ import {
   afterNextRender,
   booleanAttribute,
   createEnvironmentInjector,
+  formatRuntimeError,
   inject,
   input,
   isInjectable,
@@ -59,6 +61,7 @@ import {
   makeEnvironmentProviders,
   performanceMarkFeature,
   provideAppInitializer,
+  publishExternalGlobalUtil,
   reflectComponentType,
   runInInjectionContext,
   setClassMetadata,
@@ -82,7 +85,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-PVCVI5HS.js";
+} from "./chunk-NKWTGXST.js";
 import {
   BehaviorSubject,
   ConnectableObservable,
@@ -615,7 +618,7 @@ var UrlParser = class {
       if (next !== "/" && next !== ")" && next !== ";") {
         throw new RuntimeError(4010, (typeof ngDevMode === "undefined" || ngDevMode) && `Cannot parse url '${this.url}'`);
       }
-      let outletName = void 0;
+      let outletName;
       if (path.indexOf(":") > -1) {
         outletName = path.slice(0, path.indexOf(":"));
         this.capture(outletName);
@@ -624,7 +627,7 @@ var UrlParser = class {
         outletName = PRIMARY_OUTLET;
       }
       const children = this.parseChildren();
-      segments[outletName] = Object.keys(children).length === 1 ? children[PRIMARY_OUTLET] : new UrlSegmentGroup([], children);
+      segments[outletName ?? PRIMARY_OUTLET] = Object.keys(children).length === 1 && children[PRIMARY_OUTLET] ? children[PRIMARY_OUTLET] : new UrlSegmentGroup([], children);
       this.consumeOptional("//");
     }
     return segments;
@@ -1896,7 +1899,7 @@ var RouterOutlet = class _RouterOutlet {
    *
    * When unset, the value of the token is `undefined` by default.
    */
-  routerOutletData = input(void 0, ...ngDevMode ? [{
+  routerOutletData = input(...ngDevMode ? [void 0, {
     debugName: "routerOutletData"
   }] : []);
   parentContexts = inject(ChildrenOutletContexts);
@@ -2069,6 +2072,14 @@ var RouterOutlet = class _RouterOutlet {
     detachEvents: [{
       type: Output,
       args: ["detach"]
+    }],
+    routerOutletData: [{
+      type: Input,
+      args: [{
+        isSignal: true,
+        alias: "routerOutletData",
+        required: false
+      }]
     }]
   });
 })();
@@ -4730,7 +4741,9 @@ var Router = class _Router {
   parseUrl(url) {
     try {
       return this.urlSerializer.parse(url);
-    } catch {
+    } catch (e) {
+      this.console.warn(formatRuntimeError(4018, ngDevMode && `Error parsing URL ${url}. Falling back to '/' instead. 
+` + e));
       return this.urlSerializer.parse("/");
     }
   }
@@ -5559,11 +5572,14 @@ var RouterScroller = class _RouterScroller {
   consumeScrollEvents() {
     return this.transitions.events.subscribe((e) => {
       if (!(e instanceof Scroll)) return;
+      const instantScroll = {
+        behavior: "instant"
+      };
       if (e.position) {
         if (this.options.scrollPositionRestoration === "top") {
-          this.viewportScroller.scrollToPosition([0, 0]);
+          this.viewportScroller.scrollToPosition([0, 0], instantScroll);
         } else if (this.options.scrollPositionRestoration === "enabled") {
-          this.viewportScroller.scrollToPosition(e.position);
+          this.viewportScroller.scrollToPosition(e.position, instantScroll);
         }
       } else {
         if (e.anchor && this.options.anchorScrolling === "enabled") {
@@ -5615,7 +5631,26 @@ var RouterScroller = class _RouterScroller {
     type: void 0
   }], null);
 })();
+function getLoadedRoutes(route) {
+  return route._loadedRoutes;
+}
+function getRouterInstance(injector) {
+  return injector.get(Router, null, {
+    optional: true
+  });
+}
+function navigateByUrl(router, url) {
+  if (!(router instanceof Router)) {
+    throw new Error("The provided router is not an Angular Router.");
+  }
+  return router.navigateByUrl(url);
+}
 function provideRouter(routes, ...features) {
+  if (typeof ngDevMode === "undefined" || ngDevMode) {
+    publishExternalGlobalUtil("ɵgetLoadedRoutes", getLoadedRoutes);
+    publishExternalGlobalUtil("ɵgetRouterInstance", getRouterInstance);
+    publishExternalGlobalUtil("ɵnavigateByUrl", navigateByUrl);
+  }
   return makeEnvironmentProviders([{
     provide: ROUTES,
     multi: true,
@@ -6008,7 +6043,7 @@ function mapToCanDeactivate(providers) {
 function mapToResolve(provider) {
   return (...params) => inject(provider).resolve(...params);
 }
-var VERSION = new Version("20.3.4");
+var VERSION = new Version("20.3.15");
 export {
   ActivatedRoute,
   ActivatedRouteSnapshot,
@@ -6095,7 +6130,7 @@ export {
 @angular/router/fesm2022/router_module.mjs:
 @angular/router/fesm2022/router.mjs:
   (**
-   * @license Angular v20.3.4
+   * @license Angular v20.3.15
    * (c) 2010-2025 Google LLC. https://angular.dev/
    * License: MIT
    *)

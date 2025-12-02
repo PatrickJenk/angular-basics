@@ -1,7 +1,7 @@
 import {
   getDOM
-} from "./chunk-LMFWKNMP.js";
-import "./chunk-W2WIUP6R.js";
+} from "./chunk-5JLNKCAC.js";
+import "./chunk-CYIUJTKM.js";
 import {
   ApplicationRef,
   ChangeDetectorRef,
@@ -45,7 +45,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵlistener
-} from "./chunk-PVCVI5HS.js";
+} from "./chunk-NKWTGXST.js";
 import {
   Subject,
   forkJoin,
@@ -1713,6 +1713,7 @@ var AbstractControl = class {
    * `events` of the parent control instead.
    * For other event types, the events are emitted after the parent control has been updated.
    *
+   * @see [Unified control state change events](guide/forms/reactive-forms#unified-control-state-change-events)
    */
   events = this._events.asObservable();
   /**
@@ -6223,6 +6224,8 @@ var FormArray = class extends AbstractControl {
    * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
    * `valueChanges` observables emit events with the latest status and value when the control is
    * inserted. When false, no events are emitted.
+   *
+   * NOTE: Pushing to the FormArray will not mark it dirty. If you want to mark if dirty, call `markAsDirty()`.
    */
   push(control, options = {}) {
     if (Array.isArray(control)) {
@@ -6251,6 +6254,8 @@ var FormArray = class extends AbstractControl {
    * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
    * `valueChanges` observables emit events with the latest status and value when the control is
    * inserted. When false, no events are emitted.
+   *
+   * NOTE: Inserting to the FormArray will not mark it dirty. If you want to mark if dirty, call `markAsDirty()`.
    */
   insert(index, control, options = {}) {
     this.controls.splice(index, 0, control);
@@ -6270,6 +6275,8 @@ var FormArray = class extends AbstractControl {
    * * `emitEvent`: When true or not supplied (the default), both the `statusChanges` and
    * `valueChanges` observables emit events with the latest status and value when the control is
    * removed. When false, no events are emitted.
+   *
+   * NOTE: Removing the FormArray will not mark it dirty. If you want to mark if dirty, call `markAsDirty()`.
    */
   removeAt(index, options = {}) {
     let adjustedIndex = this._adjustIndex(index);
@@ -6807,7 +6814,7 @@ var UntypedFormBuilder = class _UntypedFormBuilder extends FormBuilder {
     }]
   }], null, null);
 })();
-var VERSION = new Version("20.3.4");
+var VERSION = new Version("20.3.15");
 var FormsModule = class _FormsModule {
   /**
    * @description
@@ -6960,7 +6967,7 @@ export {
 
 @angular/forms/fesm2022/forms.mjs:
   (**
-   * @license Angular v20.3.4
+   * @license Angular v20.3.15
    * (c) 2010-2025 Google LLC. https://angular.dev/
    * License: MIT
    *)

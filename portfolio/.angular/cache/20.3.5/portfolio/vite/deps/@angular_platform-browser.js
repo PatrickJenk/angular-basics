@@ -3,13 +3,8 @@ import {
   BrowserGetTestability,
   BrowserModule,
   By,
-  DomEventsPlugin,
-  DomRendererFactory2,
   DomSanitizer,
   DomSanitizerImpl,
-  EVENT_MANAGER_PLUGINS,
-  EventManager,
-  EventManagerPlugin,
   HAMMER_GESTURE_CONFIG,
   HAMMER_LOADER,
   HammerGestureConfig,
@@ -18,8 +13,6 @@ import {
   HydrationFeatureKind,
   KeyEventsPlugin,
   Meta,
-  REMOVE_STYLES_ON_COMPONENT_DESTROY,
-  SharedStylesHost,
   Title,
   VERSION,
   bootstrapApplication,
@@ -34,13 +27,22 @@ import {
   withI18nSupport,
   withIncrementalHydration,
   withNoHttpTransferCache
-} from "./chunk-U2W4D4HE.js";
+} from "./chunk-3XICD2JW.js";
+import "./chunk-JCFQ5C7X.js";
+import {
+  DomEventsPlugin,
+  DomRendererFactory2,
+  EVENT_MANAGER_PLUGINS,
+  EventManager,
+  EventManagerPlugin,
+  REMOVE_STYLES_ON_COMPONENT_DESTROY,
+  SharedStylesHost
+} from "./chunk-GEDVNYGP.js";
 import {
   getDOM
-} from "./chunk-LMFWKNMP.js";
-import "./chunk-A3XECZ2N.js";
-import "./chunk-W2WIUP6R.js";
-import "./chunk-PVCVI5HS.js";
+} from "./chunk-5JLNKCAC.js";
+import "./chunk-CYIUJTKM.js";
+import "./chunk-NKWTGXST.js";
 import "./chunk-RSS3ODKE.js";
 import "./chunk-WDMUDEB6.js";
 export {

@@ -275,6 +275,7 @@ import {
   registerNgModuleType,
   renderDeferBlockState,
   resetCompiledComponents,
+  resetIncrementalHydrationEnabledWarnedForTests,
   resetJitOptions,
   resolveComponentResources,
   resolveForwardRef,
@@ -491,10 +492,10 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty,
-  ɵɵvalidateIframeAttribute,
+  ɵɵvalidateAttribute,
   ɵɵviewQuery,
   ɵɵviewQuerySignal
-} from "./chunk-PVCVI5HS.js";
+} from "./chunk-NKWTGXST.js";
 import "./chunk-RSS3ODKE.js";
 import "./chunk-WDMUDEB6.js";
 export {
@@ -787,6 +788,7 @@ export {
   registerLocaleData as ɵregisterLocaleData,
   renderDeferBlockState as ɵrenderDeferBlockState,
   resetCompiledComponents as ɵresetCompiledComponents,
+  resetIncrementalHydrationEnabledWarnedForTests as ɵresetIncrementalHydrationEnabledWarnedForTests,
   resetJitOptions as ɵresetJitOptions,
   resolveComponentResources as ɵresolveComponentResources,
   restoreComponentResolutionQueue as ɵrestoreComponentResolutionQueue,
@@ -992,7 +994,7 @@ export {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty,
-  ɵɵvalidateIframeAttribute,
+  ɵɵvalidateAttribute,
   ɵɵviewQuery,
   ɵɵviewQuerySignal
 };

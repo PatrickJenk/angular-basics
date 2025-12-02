@@ -7,7 +7,7 @@ import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-transl
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule, TranslatePipe, TranslateDirective],
+  imports: [RouterOutlet, RouterModule, TranslatePipe,],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
