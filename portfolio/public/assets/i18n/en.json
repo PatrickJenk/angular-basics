@@ -1,0 +1,22 @@
+{
+"test": "The Test!",
+"about-me": "About me",
+"cv": "CV",
+"portfolio-titel": "Portfollio: Patrick Jenk",
+"picture-titel": "Soapbox race",
+"save-button": "save",
+"my-cv": "my CV",
+"add-button": "Add",
+"employer": "Employer",
+"start": "Start",
+"end": "Start",
+"cv-save-button": "Save",
+"cv-cancel-button": "Cancel",
+"login-ok": "ok",
+"login-cancel": "cancel",
+"edit-employer": "Employer",
+"edit-start": "Start",
+"edit-end": "End",
+"edit-save": "Save",
+"edit-cancel": "Cancel"
+}

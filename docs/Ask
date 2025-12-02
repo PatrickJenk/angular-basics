@@ -1,0 +1,5 @@
+Wie kann ich die Sprachanpassung machen in den Placeholders?
+Geht das auch mit dem   {{"xyz | translate}}
+
+alt: <td><input type="number" [(ngModel)]="newTo" placeholder="End"></td>
+neu: <td><input type="number" [(ngModel)]="newTo" placeholder="{{'placeholder-End' | translate}}"></td>

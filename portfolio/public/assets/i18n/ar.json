@@ -1,0 +1,22 @@
+{
+  "test": "الاختبار!",
+  "about-me": "نبذة عني",
+  "cv": "السيرة الذاتية",
+  "portfolio-titel": "ملف الاعمال: باتريك ينك",
+  "picture-titel": "سباق الصندوق الصابوني",
+  "save-button": "حفظ",
+  "my-cv": "سيرتي الذاتية",
+  "add-button": "اضافة",
+  "employer": "صاحب العمل",
+  "start": "البداية",
+  "end": "النهاية",
+  "cv-save-button": "حفظ",
+  "cv-cancel-button": "الغاء",
+  "login-ok": "موافق",
+  "login-cancel": "الغاء",
+  "edit-employer": "صاحب العمل",
+  "edit-start": "البداية",
+  "edit-end": "النهاية",
+  "edit-save": "حفظ",
+  "edit-cancel": "الغاء"
+}

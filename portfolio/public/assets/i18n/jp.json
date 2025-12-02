@@ -1,0 +1,22 @@
+{
+  "test": "テスト!",
+  "about-me": "自己紹介",
+  "cv": "履歴書",
+  "portfolio-titel": "ポートフォリオ: パトリック イェンク",
+  "picture-titel": "ソープボックスレース",
+  "save-button": "保存",
+  "my-cv": "私の履歴書",
+  "add-button": "追加",
+  "employer": "雇用主",
+  "start": "開始",
+  "end": "終了",
+  "cv-save-button": "保存",
+  "cv-cancel-button": "キャンセル",
+  "login-ok": "OK",
+  "login-cancel": "キャンセル",
+  "edit-employer": "雇用主",
+  "edit-start": "開始",
+  "edit-end": "終了",
+  "edit-save": "保存",
+  "edit-cancel": "キャンセル"
+}

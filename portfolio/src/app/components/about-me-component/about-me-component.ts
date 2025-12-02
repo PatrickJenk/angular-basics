@@ -3,11 +3,12 @@ import { AboutMe } from '../../models/about-me';
 import { AboutMeService } from '../../services/about-me-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about-me-component',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, TranslatePipe],
   templateUrl: './about-me-component.html',
   styleUrls: ['./about-me-component.css']
 })

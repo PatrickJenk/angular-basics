@@ -1,13 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="save()">
-    <label for="employer">Employer</label>
+    <label for="employer">{{'edit-employer' | translate}}</label>
     <input id="employer" formControlName="employer" type="text">
     
-    <label for="start">Start</label>
+    <label for="start">{{'edit-start' | translate}}</label>
     <input id="start" formControlName="start" type="number">
     
-    <label for="end">End</label>
+    <label for="end">{{'edit-end' | translate}}</label>
     <input id="end" formControlName="end" type="number">
 
-    <button class="btn" [disabled]="form.invalid" type="submit">save</button>
-    <button class="btn grey" type="button" onclick="history.back()">cancel</button>
+    <button class="btn" [disabled]="form.invalid" type="submit">{{'edit-save' | translate}}</button>
+    <button class="btn grey" type="button" onclick="history.back()">{{'edit-cancel' | translate}}</button>
 </form>

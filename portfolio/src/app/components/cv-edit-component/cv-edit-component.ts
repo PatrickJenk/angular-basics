@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv-service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cv-edit-component',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './cv-edit-component.html',
   styleUrls: ['./cv-edit-component.css']
 })

@@ -1,16 +1,16 @@
 <div class="cv-wrapper">
   <div class="card">
     <div class="card-header">
-      <h2>Mein CV</h2>
-    <button class="btn-add" type="button" (click)="onAddClick()">Add</button>
+      <h2>{{'my-cv' | translate}}</h2>
+    <button class="btn-add" type="button" (click)="onAddClick()">{{'add-button' | translate}}</button>
     </div>
 
     <table class="cv-table">
       <thead>
         <tr>
-          <th>Employer</th>
-          <th>Start</th>
-          <th>End</th>
+          <th>{{'employer' | translate}}</th>
+          <th>{{'start' | translate}}</th>
+          <th>{{'end' | translate}}</th>
           <th *ngIf="isEditingAllowed" class="th-actions"></th>
         </tr>
       </thead>
@@ -29,8 +29,8 @@
           <td><input type="number" [(ngModel)]="newFrom" placeholder="Start"></td>
           <td><input type="number" [(ngModel)]="newTo" placeholder="End"></td>
           <td class="td-actions">
-            <button class="btn" (click)="saveNew()">Save</button>
-            <button class="btn ghost" (click)="showEditor=false">Cancel</button>
+            <button class="btn" (click)="saveNew()">{{'cv-save-button' | translate}}</button>
+            <button class="btn ghost" (click)="showEditor=false">{{'cv-cancel-button' | translate}}</button>
           </td>
         </tr>
       </tbody>
@@ -38,14 +38,14 @@
   </div>
 </div>
 
-<!-- Login Modal (umbenannte Klassen, kein Konflikt mehr) -->
+
 <div class="cv-modal-backdrop" *ngIf="showLogin" (click)="closeLogin()">
   <div class="cv-modal" (click)="$event.stopPropagation()">
     <h3>Login</h3>
     <input type="password" [(ngModel)]="password" placeholder="Passwort">
     <div class="cv-modal-actions">
-      <button class="btn" (click)="checkPassword()">OK</button>
-      <button class="btn ghost" (click)="closeLogin()">Cancel</button>
+      <button class="btn" (click)="checkPassword()">{{'login-ok' | translate}}</button>
+      <button class="btn ghost" (click)="closeLogin()">{{'login-cancel' | translate}}</button>
     </div>
   </div>
 </div>

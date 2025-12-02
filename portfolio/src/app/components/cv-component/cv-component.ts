@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Cv } from '../../models/cv';
 import { CvService } from '../../services/cv-service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './cv-component.html',
   styleUrls: ['./cv-component.css']
 })

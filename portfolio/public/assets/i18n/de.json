@@ -1,0 +1,22 @@
+{
+  "test": "Der Test!",
+  "about-me": "Über mich",
+  "cv": "Lebenslauf",
+  "portfolio-titel": "Portfolio: Patrick Jenk",
+  "picture-titel": "Seifenkistenrennen",
+  "save-button": "sichern",
+  "my-cv": "mein Lebenslauf",
+  "add-button": "hinzufügen",
+  "employer": "Arbeitgeber",
+  "start": "Start",
+  "end": "Start",
+  "cv-save-button": "sichern",
+  "cv-cancel-button": "abbrechen",
+  "login-ok": "ok",
+  "login-cancel": "abbrechen",
+  "edit-employer": "Arbeitgeber",
+  "edit-start": "Start",
+  "edit-end": "Ende",
+  "edit-save": "sichern",
+  "edit-cancel": "abbrechen"
+}
